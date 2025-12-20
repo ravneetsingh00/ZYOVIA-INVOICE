@@ -1,0 +1,381 @@
+/* ================= THEME VARIABLES ================= */
+:root {
+  --bg-page: #e8e6e1;
+  --bg-header: #000;
+  --text-main: #000;
+  --text-light: #fff;
+  --border-color: #9c9c9c;
+  --table-border: #b0b0b0;
+  --accent: #000;
+}
+
+/* ================= RESET ================= */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #999;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ================= A4 PAGE ================= */
+@page {
+  size: A4;
+  margin: 0;
+}
+
+/* ================= MAIN INVOICE ================= */
+.invoice-box {
+  width: 210mm;
+  height: 297mm;                /* 🔒 FIXED A4 */
+  margin: auto;
+  background: var(--bg-page);
+  padding: 12mm;
+  font-size: 12px;
+  color: var(--text-main);
+  display: flex;
+  flex-direction: column;
+  position: relative;           /* REQUIRED for footer lock */
+}
+
+/* ================= CONTENT ================= */
+.invoice-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 40mm;         /* 🔒 space reserved for footer */
+}
+
+/* ================= HEADER ================= */
+.header {
+  background: var(--bg-header);
+  color: var(--text-light);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 22px;
+}
+
+.logo {
+  height: 62px;
+}
+
+.header-right {
+  font-size: 12px;
+}
+
+/* ================= TITLE ================= */
+.gst-info {
+  position: relative;
+  padding: 5px 22px 6px;
+}
+
+.center-title {
+  text-align: center;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 2px;
+  margin: 2px 0;
+}
+
+.gst-right {
+  position: absolute;
+  right: 22px;
+  top: 4px;
+  font-size: 11px;
+}
+
+/* ================= BILLING ================= */
+.billing {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 40px;
+  padding: 0 22px 6px;
+  font-size: 12px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.bill-heading {
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.field {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  margin-bottom: 3px;
+}
+
+/* ================= ITEMS TABLE ================= */
+.items {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: fixed;
+}
+
+.items th,
+.items td {
+  border: 1px solid var(--table-border);
+  padding: 5px;
+  vertical-align: middle;
+}
+
+.items th {
+  background: rgba(0, 0, 0, 0.04);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* DESCRIPTION */
+.items td:nth-child(2) {
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+/* ALIGN NUMBERS */
+.items td:nth-child(n+3) {
+  text-align: center;
+}
+
+/* EDITABLE */
+.items td[contenteditable="true"] {
+  min-height: 20px;
+  outline: none;
+}
+
+/* ================= COLUMN WIDTHS ================= */
+.col-sno { width: 6%; }
+.col-desc { width: 40%; }
+.col-qty { width: 7%; }
+.col-rate { width: 9%; }
+.col-gst { width: 7%; }
+.col-gst-amount { width: 15%; }
+.col-total { width: 16%; }
+
+/* ================= BOTTOM GRID ================= */
+.bottom-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.6fr;
+  margin-top: 8px;
+  border: 1px solid var(--border-color);
+  font-size: 11.5px;
+}
+
+.bottom-grid > div {
+  padding: 8px;
+  border-right: 1px solid var(--border-color);
+}
+
+.bottom-grid > div:last-child {
+  border-right: none;
+}
+
+/* ================= TOTAL ================= */
+.total-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.total-table td {
+  padding: 4px 4px;
+  border-bottom: 1px solid var(--table-border);
+}
+
+.total-table td:first-child {
+  text-align: left;
+}
+
+.total-table td:last-child {
+  text-align: right;
+}
+
+.total-table .grand td {
+  font-weight: 700;
+  border-top: 2px solid var(--accent);
+}
+
+/* ================= AMOUNT IN WORDS ================= */
+.amount-words {
+  padding: 8px;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  font-size: 11.5px;
+}
+
+/* ================= FOOTER (LOCKED) ================= */
+.footer {
+  position: absolute;
+  bottom: 12mm;                 /* 🔒 A4 BORDER */
+  left: 12mm;
+  right: 12mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 12px;
+  border-top: 1px solid var(--border-color);
+  padding-top: 6mm;
+  background: var(--bg-page);
+}
+
+/* CONTACT */
+.footer-left {
+  line-height: 1.4;
+}
+
+/* SIGNATURE */
+.footer-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.signature-box {
+  position: relative;
+  width: 60mm;
+  height: 32mm;
+  text-align: center;
+}
+
+.signature-img {
+  position: absolute;
+  top: 5mm;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 44mm;
+}
+
+.signature-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* ================= PRINT ================= */
+@media print {
+  body {
+    background: none;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+
+
+/* ================= SAVE MODE ================= */
+.saved-mode .no-print {
+  display: none !important;
+}
+
+
+
+/* ================= WELCOME POPUP ================= */
+.welcome-popup {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+/* ================= POPUP BOX ================= */
+.welcome-box {
+  background: #000000;
+  padding: 40px 50px;
+  text-align: center;
+  border-radius: 8px;
+  min-width: 320px;
+  animation: fadeIn 0.4s ease;
+}
+
+/* ================= POPUP TEXT ================= */
+.welcome-box p:not(.password-error) {
+  margin: 15px 0 25px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+/* ================= POPUP BUTTON ================= */
+.welcome-box button {
+  padding: 10px 28px;
+  border: none;
+  background: #ffffff;
+  color: #000000;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.welcome-box button:hover {
+  opacity: 0.9;
+}
+
+/* ================= POPUP LOGO ================= */
+.popup-logo {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.popup-logo img {
+  max-width: 180px;
+  height: auto;
+}
+
+/* ================= PASSWORD INPUT ================= */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.popup-input {
+  width: 100%;
+  padding: 10px 38px 10px 10px;
+  margin: 10px 0 6px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* ================= PASSWORD ERROR ================= */
+.welcome-box .password-error {
+  color: #ff0000;
+  font-size: 12px;
+  min-height: 14px;
+  margin-bottom: 10px;
+}
+
+/* ================= PASSWORD TOGGLE (EYE) ================= */
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  user-select: none;
+  opacity: 0.7;
+}
+
+.toggle-password:hover {
+  opacity: 1;
+}
+
+/* ================= FADE ANIMATION ================= */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
